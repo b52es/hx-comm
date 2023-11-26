@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# hx-comm-lang: Получение языка для комментирования строк в Helix
+
+commfile="${HOME}/.config/helix/comm-lang"
+
+if [[ "$PWD" != "$HOME" ]]
+then
+  inotifywait -rqe modify "$PWD" | sed -rn 's_^.*\.(.*)$_\1_p' > "$commfile"
+else
+  inotifywait -qe modify "$PWD" | sed -rn 's_^.*\.(.*)$_\1_p' > "$commfile"
+fi
