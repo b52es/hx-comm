@@ -50,6 +50,7 @@ if you are using another shell then you should change the above command accordin
 
 ```
 You can select another keyboard shortcuts, see [Helix key remapping docs](https://docs.helix-editor.com/remapping.html).
+
 7. Log out and log in on you Linux machine.
 
 ## Usage
