@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# hx-comm-lang: Получение языка для комментирования строк в Helix
+# hx-comm-lang: getting the extension of the edited file in Helix
 
-commfile="${HOME}/.config/helix/comm-lang"
+commfile="${HX_COMM_DIR}/comm-lang"
 
 if [[ "$PWD" != "$HOME" ]]
 then
