@@ -143,8 +143,10 @@ void edit_comm(char *start, char *end) {
       putc(chr, stdout);
       if (end_length && !chk_nst && chr == start[nst_count]) {
         ++nst_count;
-        if (nst_count == start_length) chk_nst = 1;
-      }
+        if (nst_count == start_length) {
+          chk_nst = 1; nst_count = 0;
+        }
+      } else nst_count = 0;
     }
   }
   if (start_done && !end_done && !end_get && !chk_nst)
