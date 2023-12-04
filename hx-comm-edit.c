@@ -101,22 +101,24 @@ void get_comm(char *start, char *end, int lang_l, char *lang,
 void edit_comm(char *start, char *end) {
   int chr, start_count = 0, start_done = 0,
     end_get = 0, end_count = 0, end_done = 0,
-      unget_chr = 0;
+      unget_chr = 0, chk_nst = 0, nst_count = 0;
   while (unget_chr || (chr = getc(stdin)) != EOF) {
     unget_chr = 0;
-    if (chr == '\n') {
-      if (end_length && start_done && !end_get)
+    if (chr == '\n' || chr == '\r') {
+      if (end_length && start_done && !end_get && !chk_nst)
         for (int i = 0; i < end_length; ++i)
           putc(end[i], stdout);
-      start_count = start_done = end_get = end_count = end_done = 0;
-      putc(chr, stdout); continue;
+      putc(chr, stdout);
+      if (chr == '\r') putc(getc(stdin),stdout);
+      start_count = start_done = end_get = 0;
+      end_count = end_done = chk_nst = nst_count = 0;
+      continue;
     }
     if (!start_done) {
       if (chr == start[start_count]) {
         ++start_count;
         if (start_count == start_length) {
-          start_done = 1; 
-          end_get = 1;
+          start_done = 1; end_get = 1;
         }
       } else if (chr == '\t' || chr == ' ') putc(chr, stdout);
       else {
@@ -124,17 +126,27 @@ void edit_comm(char *start, char *end) {
           putc(start[i], stdout);
         if (start_count) for (int i = 0; i < start_count; ++i)
           putc(start[i], stdout);
-          putc(chr, stdout); start_done = 1;
+        start_done = 1; unget_chr = 1;
       }
-    } else if ((chr == end[end_count]) && end_length && !end_done && end_get) {
+    } else if ((chr == end[end_count]) && end_length &&
+        !end_done && end_get && !nst_count) {
       ++end_count;
-      if (end_count == end_length) end_done = 1;
+      if (end_count == end_length) {
+        end_done = 1;
+        if (chk_nst) for (int i = 0; i < end_length; ++i)
+          putc(end[i], stdout);
+      }
     } else if (end_count) {
       for (int i = 0; i < end_count; ++i) putc(end[i], stdout);
-      end_count = 0;
-      unget_chr = 1;
-    } else putc(chr, stdout);
+      end_count = 0; unget_chr = 1;
+    } else {
+      putc(chr, stdout);
+      if (end_length && !chk_nst && chr == start[nst_count]) {
+        ++nst_count;
+        if (nst_count == start_length) chk_nst = 1;
+      }
+    }
   }
-  if (start_done && !end_done && !end_get)
+  if (start_done && !end_done && !end_get && !chk_nst)
     for (int i = 0; i < end_length; ++i) putc(end[i], stdout);
 }
