@@ -23,23 +23,23 @@ The following packages must be installed on your system:
 ## Installation
 1. Clone this repo:
 ```sh
-  git clone https://github.com/b52es/hx-comm.git
+git clone https://github.com/b52es/hx-comm.git
 ```
 2. Change dir:
 ```sh
-  cd hx-comm
+cd hx-comm
 ```
 3. Compile:
 ```sh
-  clang hx-comm-edit.c -lm -o hx-comm-edit
+clang hx-comm-edit.c -lm -o hx-comm-edit
 ```
 4. Make it executable:
 ```sh
-  chmod +x hx-comm-edit; chmod +x hx-comm-lang
+chmod +x hx-comm-edit; chmod +x hx-comm-lang
 ```
 5. Set environment variable (for bash):
 ```sh
-  echo "export HX_COMM_DIR=${PWD}" >> $HOME/.bashrc
+echo "export HX_COMM_DIR=${PWD}" >> $HOME/.bashrc
 ```
 if you are using another shell then you should change the above command accordingly.
 
