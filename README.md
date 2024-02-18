@@ -44,14 +44,13 @@ echo "export HX_COMM_DIR=${PWD}" >> $HOME/.bashrc
 if you are using another shell then you should change the above command accordingly.
 
 6. Open and edit your Helix `config.toml` by adding following lines in section `[keys.normal]`:
-```toml
+```
 # "#" - used to comment out the entire line
 "#" = ["extend_to_line_bounds", ":pipe ${HX_COMM_DIR}/hx-comm-edit ${HX_COMM_DIR}/comm-lang ${HX_COMM_DIR}/comm-lang-table"]
 # "$" - used to comment out a single line from the current cursor position to the end of the line
 "$" = ["select_mode", "goto_line_end_newline", "normal_mode", ":pipe ${HX_COMM_DIR}/hx-comm-edit ${HX_COMM_DIR}/comm-lang ${HX_COMM_DIR}/comm-lang-table"]
 # "^" runs the hx-comm-lang script, after which you need to save the current file via ":w"
 "^" = ":sh ${HX_COMM_DIR}/hx-comm-lang"
-
 ```
 You can select another keyboard shortcuts, see [Helix key remapping docs](https://docs.helix-editor.com/remapping.html).
 
@@ -63,6 +62,7 @@ You can select another keyboard shortcuts, see [Helix key remapping docs](https:
 3. Select some lines of code using `x` key.
 4. Press `#` or `$` to comment them out.
 5. Press `#` or `$` again to uncomment them back.
+
 PS. `#` and `$` works the same when multiple lines are selected. Their main difference appears when nothing is selected:
 - `#` - selects the entire current line;
 - `$` - selects the line from the current cursor position to the end of the current line.
