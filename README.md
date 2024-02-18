@@ -1,7 +1,7 @@
 # hx-comm
 This tool allows you to work with comments when editing code in Helix editor.
 The main differences from the commenting in Helix (via the keyboard shortcut Ctrl-C):
-- the ability to configure the necessary identifiers of comments (for example, when editing a file with a C extension, you can use '//' or '/* .. */');
+- the ability to configure the necessary identifiers of comments (for example, when editing a file with a C extension, you can use `//` or `/* .. */`);
 - if you lack support for HTML and CSS commenting, so you can do it with this utility.
 
 ## How it works
