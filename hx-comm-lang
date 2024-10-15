@@ -2,11 +2,7 @@
 
 # hx-comm-lang: getting the extension of the edited file in Helix
 
-commfile="${HX_COMM_DIR}/comm-lang"
-
-if [[ "$PWD" != "$HOME" ]]
-then
-  inotifywait -rqe modify "$PWD" | sed -rn 's_^.*\.(.*)$_\1_p' > "$commfile"
-else
-  inotifywait -qe modify "$PWD" | sed -rn 's_^.*\.(.*)$_\1_p' > "$commfile"
-fi
+comm_file="${HX_COMM_DIR}/comm-lang"
+[[ "$PWD" != "$HOME" ]] && recur="-r"
+modified_file=$(inotifywait $recur -qe modify --format '%f' "$PWD")
+echo "${modified_file##*.}" > "$comm_file"

@@ -15,10 +15,9 @@ This utility also uses 2 files as command line parameters:
 The following packages must be installed on your system:
 1. C compiler (`clang` or `gcc`). I have only used and tested with Clang.
 2. `inotify-tools`
-3. `sed`
-4. `git`
+3. `git`
 
-`inotify-tools` and `sed` needs to run `hx-comm-lang` bash script.
+`inotify-tools` needs to run `hx-comm-lang` bash script.
 
 ## Installation
 1. Clone this repo:
@@ -31,11 +30,11 @@ cd hx-comm
 ```
 3. Compile:
 ```sh
-clang hx-comm-edit.c -o hx-comm-edit
+clang hx-comm-edit.c -o -O3 hx-comm-edit
 ```
 4. Make it executable:
 ```sh
-chmod +x hx-comm-edit; chmod +x hx-comm-lang
+chmod +x hx-comm-edit hx-comm-lang
 ```
 5. Set environment variable (for bash):
 ```sh
