@@ -30,7 +30,7 @@ cd hx-comm
 ```
 3. Compile:
 ```sh
-clang hx-comm-edit.c -o -O3 hx-comm-edit
+clang hx-comm-edit.c -O3 -o hx-comm-edit
 ```
 4. Make it executable:
 ```sh
